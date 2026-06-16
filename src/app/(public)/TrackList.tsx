@@ -54,8 +54,6 @@ export default function TrackList() {
     [currentTrack, playTrack]
   )
 
-  console.log(filtered.length)
-
   return (
     <>
       {/* Search */}
