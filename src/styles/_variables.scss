@@ -1,0 +1,57 @@
+// === TYPOGRAPHY ===
+$font-display: 'Space Grotesk', sans-serif;
+$font-body: 'Inter', sans-serif;
+
+// === DARK THEME TOKENS ===
+$dark-bg: #0A0A0F;
+$dark-surface: #13131F;
+$dark-surface-raised: #1C1C2E;
+$dark-border: #2A2A40;
+$dark-text-primary: #E8E8F0;
+$dark-text-secondary: #8888A8;
+$dark-accent: #C9A84C;
+$dark-accent-hover: #DFC060;
+$dark-accent-muted: rgba(201, 168, 76, 0.12);
+$dark-player-bg: #0F0F1A;
+
+// === LIGHT THEME TOKENS ===
+$light-bg: #F0F0F8;
+$light-surface: #FFFFFF;
+$light-surface-raised: #F8F8FF;
+$light-border: #DDDDF0;
+$light-text-primary: #12121E;
+$light-text-secondary: #666680;
+$light-accent: #8B6914;
+$light-accent-hover: #A07820;
+$light-accent-muted: rgba(139, 105, 20, 0.1);
+$light-player-bg: #EAEAF5;
+
+// === SPACING ===
+$space-xs: 4px;
+$space-sm: 8px;
+$space-md: 16px;
+$space-lg: 24px;
+$space-xl: 32px;
+$space-2xl: 48px;
+$space-3xl: 64px;
+
+// === RADIUS ===
+$radius-sm: 6px;
+$radius-md: 12px;
+$radius-lg: 18px;
+$radius-full: 9999px;
+
+// === TRANSITIONS ===
+$transition-fast: 0.15s ease;
+$transition-base: 0.25s ease;
+$transition-slow: 0.4s ease;
+
+// === SHADOWS ===
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+$shadow-md: 0 4px 20px rgba(0, 0, 0, 0.3);
+$shadow-accent: 0 0 20px rgba(201, 168, 76, 0.2);
+
+// === Z-INDEX ===
+$z-player: 100;
+$z-header: 50;
+$z-modal: 200;

@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import 'variables';
+
+// ========================
+// CSS VARIABLES (THEMES)
+// ========================
+
+:root,
+[data-theme='dark'] {
+  --bg: #{$dark-bg};
+  --surface: #{$dark-surface};
+  --surface-raised: #{$dark-surface-raised};
+  --border: #{$dark-border};
+  --text-primary: #{$dark-text-primary};
+  --text-secondary: #{$dark-text-secondary};
+  --accent: #{$dark-accent};
+  --accent-hover: #{$dark-accent-hover};
+  --accent-muted: #{$dark-accent-muted};
+  --player-bg: #{$dark-player-bg};
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='light'] {
+  --bg: #{$light-bg};
+  --surface: #{$light-surface};
+  --surface-raised: #{$light-surface-raised};
+  --border: #{$light-border};
+  --text-primary: #{$light-text-primary};
+  --text-secondary: #{$light-text-secondary};
+  --accent: #{$light-accent};
+  --accent-hover: #{$light-accent-hover};
+  --accent-muted: #{$light-accent-muted};
+  --player-bg: #{$light-player-bg};
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+}
+
+// ========================
+// RESET & BASE
+// ========================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-body;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  transition:
+    background-color $transition-base,
+    color $transition-base;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: $font-body;
+}
+
+input,
+textarea,
+select {
+  font-family: $font-body;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// ========================
+// SCROLLBAR
+// ========================
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: $radius-full;
+
+  &:hover {
+    background: var(--accent);
+  }
+}
+
+// ========================
+// UTILITY CLASSES
+// ========================
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $space-lg;
+
+  @media (max-width: 768px) {
+    padding: 0 $space-md;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+// Page wrapper to account for sticky player
+.page-wrapper {
+  padding-bottom: 100px;
+}
+
+// ========================
+// REACT H5 AUDIO PLAYER OVERRIDES
+// ========================
+
+.rhap_container {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  font-family: $font-body !important;
+}
+
+.rhap_progress-bar {
+  background: var(--border) !important;
+  height: 4px !important;
+  border-radius: $radius-full !important;
+}
+
+.rhap_progress-filled {
+  background: var(--accent) !important;
+  border-radius: $radius-full !important;
+}
+
+.rhap_progress-indicator {
+  background: var(--accent) !important;
+  width: 12px !important;
+  height: 12px !important;
+  top: -4px !important;
+  margin-left: -6px !important;
+  box-shadow: 0 0 6px rgba(201, 168, 76, 0.5) !important;
+}
+
+.rhap_volume-bar {
+  background: var(--border) !important;
+}
+
+.rhap_volume-indicator {
+  background: var(--accent) !important;
+}
+
+.rhap_time {
+  color: var(--text-secondary) !important;
+  font-size: 11px !important;
+  font-family: $font-body !important;
+}
+
+.rhap_controls-section {
+  margin-top: 4px !important;
+}
+
+.rhap_button-clear {
+  color: var(--text-secondary) !important;
+  transition: color $transition-fast !important;
+
+  &:hover {
+    color: var(--accent) !important;
+  }
+}
+
+.rhap_play-pause-button {
+  color: var(--accent) !important;
+  width: 44px !important;
+  height: 44px !important;
+
+  svg {
+    width: 44px !important;
+    height: 44px !important;
+  }
+}
+
+.rhap_volume-filled {
+  background: var(--accent) !important;
+}
+
+// ========================
+// ANIMATIONS
+// ========================
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes inkDrop {
+  0%   { transform: scale(0); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+@keyframes waveBar {
+  0%, 100% { transform: scaleY(0.3); }
+  50%       { transform: scaleY(1); }
+}

@@ -1,0 +1,150 @@
+@import '../../styles/variables';
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  padding: $space-md;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: $radius-md;
+  cursor: pointer;
+  transition: all $transition-fast;
+  animation: fadeIn 0.3s ease both;
+
+  &:hover {
+    border-color: var(--accent);
+    background: var(--surface-raised);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+  }
+
+  &.active {
+    border-color: var(--accent);
+    background: var(--accent-muted);
+
+    .card__index {
+      display: none;
+    }
+
+    .card__play-icon {
+      display: flex !important;
+      color: var(--accent);
+    }
+  }
+
+  &__num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    flex-shrink: 0;
+  }
+
+  &__index {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__play-icon {
+    display: none !important;
+    font-size: 18px;
+  }
+
+  &:hover .card__index {
+    display: none;
+  }
+
+  &:hover .card__play-icon {
+    display: flex !important;
+    color: var(--text-primary);
+  }
+
+  &__cover {
+    width: 48px;
+    height: 48px;
+    border-radius: $radius-sm;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: var(--surface-raised);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &-placeholder {
+      color: var(--accent);
+      font-size: 20px;
+      opacity: 0.6;
+    }
+  }
+
+  &__info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    .active & {
+      color: var(--accent);
+    }
+  }
+
+  &__artist {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: $space-md;
+    flex-shrink: 0;
+
+    @media (max-width: 640px) {
+      display: none;
+    }
+  }
+
+  &__genre {
+    font-size: 11px;
+    color: var(--text-secondary);
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    border-radius: $radius-full;
+  }
+
+  &__duration {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+    min-width: 36px;
+    text-align: right;
+  }
+
+  &__plays {
+    font-size: 12px;
+    color: var(--text-secondary);
+    min-width: 40px;
+    text-align: right;
+  }
+}
