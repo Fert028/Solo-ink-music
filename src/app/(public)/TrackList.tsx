@@ -17,10 +17,11 @@ export default function TrackList() {
   useEffect(() => {
     fetch('/api/tracks')
       .then(r => r.json())
-      .then((data: Track[]) => {
-        setTracks(data)
-        setFiltered(data)
-        setPlaylist(data)
+      .then((data) => {
+        const tracks = Array.isArray(data) ? data : []
+        setTracks(tracks)
+        setFiltered(tracks)
+        setPlaylist(tracks)
       })
       .catch(console.error)
       .finally(() => setLoading(false))
@@ -84,7 +85,7 @@ export default function TrackList() {
           </div>
           <p>Загрузка треков...</p>
         </div>
-      ) : filtered.length === 0 || undefined ? (
+      ) : !filtered || filtered.length === 0 || undefined ? (
         <div className={styles.tracks__empty}>
           <div className={styles['tracks__empty-icon']}><FiMusic /></div>
           <p>{search ? 'Ничего не найдено' : 'Пока нет треков'}</p>
