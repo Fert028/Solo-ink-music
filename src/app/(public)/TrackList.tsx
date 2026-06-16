@@ -93,7 +93,7 @@ export default function TrackList() {
         </div>
       ) : (
         <div className={styles.tracks__list}>
-          {/* {filtered.map((track, i) => (
+          {filtered.map((track, i) => (
             <TrackCard
               key={track.id}
               track={track}
@@ -102,7 +102,7 @@ export default function TrackList() {
               isPlaying={isPlaying && currentTrack?.id === track.id}
               onClick={() => handlePlay(track, i)}
             />
-          ))} */}
+          ))}
         </div>
       )}
     </>
