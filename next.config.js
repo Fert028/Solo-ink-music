@@ -4,9 +4,6 @@ const nextConfig = {
     includePaths: ['./src/styles'],
   },
   transpilePackages: ['@vercel/blob'],
-  experimental: {
-    serverComponentsExternalPackages: ['@vercel/blob'],
-  },
 }
 
 module.exports = nextConfig
