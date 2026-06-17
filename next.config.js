@@ -3,6 +3,10 @@ const nextConfig = {
   sassOptions: {
     includePaths: ['./src/styles'],
   },
+  experimental: {
+    serverComponentsExternalPackages: ['@vercel/blob'],
+  },
 }
 
-module.exports = nextConfig
+export default nextConfig
+
