@@ -37,5 +37,8 @@
     "prisma": "^5.10.0",
     "ts-node": "^10.9.2",
     "typescript": "^5"
+  },
+  "overrides": {
+    "undici": "5.28.4"
   }
 }
