@@ -3,7 +3,7 @@ const nextConfig = {
   sassOptions: {
     includePaths: ['./src/styles'],
   },
-  transpilePackages: ['@vercel/blob'],
+  transpilePackages: ['@vercel/blob', 'undici'],
 }
 
 module.exports = nextConfig
