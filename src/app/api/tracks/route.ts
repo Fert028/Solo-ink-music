@@ -34,6 +34,20 @@ function isBlobUrl(url: string): boolean {
   }
 }
 
+// GET /api/tracks — list all tracks (used by the admin table and the homepage)
+export async function GET() {
+  try {
+    const tracks = await prisma.track.findMany({
+      orderBy: { createdAt: 'desc' },
+    })
+    return NextResponse.json(tracks)
+  } catch (err) {
+    console.error('List tracks error:', err)
+    return NextResponse.json({ error: 'Failed to load tracks' }, { status: 500 })
+  }
+}
+
+// POST /api/tracks — create a track record from already-uploaded blob URLs
 export async function POST(req: NextRequest) {
   const session = await getSession()
   if (!session.isLoggedIn) {
@@ -83,3 +97,4 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Failed to save track' }, { status: 500 })
   }
 }
+
