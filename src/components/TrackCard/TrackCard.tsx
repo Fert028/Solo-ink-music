@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { FiMusic, FiPlay, FiPause } from 'react-icons/fi'
+import { FiMusic, FiPlay, FiPause, FiDownload } from 'react-icons/fi'
 import type { Track } from '@/types'
 import styles from './TrackCard.module.scss'
 
@@ -60,6 +60,16 @@ export default function TrackCard({ track, index, isActive, isPlaying, onClick }
           <span className={styles.card__duration}>{formatDuration(track.duration)}</span>
         )}
         <span className={styles.card__plays}>{track.plays} ▶</span>
+        <a
+          href={`/api/stream/${track.id}?download=1`}
+          download
+          onClick={(e) => e.stopPropagation()}
+          className={styles.card__download}
+          title="Скачать"
+          aria-label="Скачать трек"
+        >
+          <FiDownload />
+        </a>
       </div>
     </div>
   )
