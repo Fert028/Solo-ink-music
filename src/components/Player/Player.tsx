@@ -36,43 +36,17 @@ export default function Player() {
   }, [isPlaying])
 
   // Change src when track changes.
-  // Instead of pointing <audio> straight at the Blob URL (which makes the
-  // browser stream via HTTP range requests — flaky on desktop Firefox and
-  // causes the "playback aborted" / stops-after-a-second bug), we download the
-  // whole file once and play it from an in-memory object URL. No range
-  // requests, no streaming hiccups. Files are only a few MB, so this is cheap.
+  // We stream through our own /api/stream/<id> proxy instead of pointing at
+  // the Blob URL directly. Same-origin = no CORS, and the proxy forwards Range
+  // requests so desktop Firefox streams/seeks without the partial-transfer bug.
   useEffect(() => {
     const audio = audioRef.current
     if (!audio || !currentTrack) return
-
-    let objectUrl: string | null = null
-    let cancelled = false
-
-    const load = async () => {
-      try {
-        const res = await fetch(currentTrack.filePath)
-        if (!res.ok) throw new Error(`Failed to fetch audio: ${res.status}`)
-        const blob = await res.blob()
-        if (cancelled) return // track changed again before download finished
-        objectUrl = URL.createObjectURL(blob)
-        audio.src = objectUrl
-        audio.load()
-        if (isPlaying) audio.play().catch(() => {})
-      } catch (err) {
-        console.error('Audio load error:', err)
-      }
-    }
-
-    load()
-
+    audio.src = `/api/stream/${currentTrack.id}`
+    audio.load()
+    if (isPlaying) audio.play().catch(() => {})
     // increment plays
     fetch(`/api/tracks/${currentTrack.id}/play`, { method: 'POST' }).catch(() => {})
-
-    // Cleanup: free the previous object URL when the track changes or unmounts.
-    return () => {
-      cancelled = true
-      if (objectUrl) URL.revokeObjectURL(objectUrl)
-    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentTrack?.id])
 
