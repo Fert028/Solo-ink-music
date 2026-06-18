@@ -146,8 +146,6 @@ import { getSession } from '@/lib/session'
 
 export const dynamic = 'force-dynamic'
 
-// With client uploads the file goes browser -> Blob directly, so the 4.5 MB
-// serverless body limit no longer applies. This is the real cap now.
 const MAX_UPLOAD_SIZE = 50 * 1024 * 1024 // 50 MB
 
 const ALLOWED_TYPES = [
@@ -166,8 +164,6 @@ export async function POST(req: NextRequest) {
       body,
       request: req,
       onBeforeGenerateToken: async () => {
-        // Auth check BEFORE issuing a token. Without this, the upload
-        // endpoint is open to anyone.
         const session = await getSession()
         if (!session.isLoggedIn) {
           throw new Error('Unauthorized')
@@ -175,12 +171,10 @@ export async function POST(req: NextRequest) {
         return {
           allowedContentTypes: ALLOWED_TYPES,
           maximumSizeInBytes: MAX_UPLOAD_SIZE,
-          addRandomSuffix: false, // client already names files with a uuid
+          addRandomSuffix: false,
         }
       },
       onUploadCompleted: async () => {
-        // Not used: the DB record is created from /api/tracks after both
-        // files finish uploading (so we have audio + cover URLs together).
       },
     })
 
